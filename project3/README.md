@@ -9,6 +9,7 @@ of l vertices. Experiment with different choices of l and visualize your results
 The following two videos provide an idea as to how a visualization may look like:
 
   http://www.youtube.com/watch?v=ddbBlWAlzxE
+  
   http://www.youtube.com/watch?v=k7DK5fnJH94
   
 **Solution:**
