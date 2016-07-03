@@ -16,4 +16,4 @@ The following two videos provide an idea as to how a visualization may look like
 
 The code can be run from the terminal with the command
 
-  python SOM_3.3.py
+    python SOM_3.3.py
