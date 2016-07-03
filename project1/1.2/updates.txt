@@ -1,0 +1,16 @@
+updates.txt
+
+:Author: kanil
+:Email: kanil@kanil-laptop
+:Date: 2016-05-01 00:54
+
+Here I will write all updates i made and the difference it made to the code/performance:
+
+1) Added Hashing: Reduced number of nodes in tree from ~19000 to 16167. Takes about .88 seconds to learn tree.
+2) Added the trivial() method: This reduced the number of nodes in tree from 16167 to 10869. Take about .63 seconds to learn tree.
+3) Used the fact that rotations are similar. This reduced the number of nodes in tree even further. From 10869 to 2736. Now takes about .29 seconds to learn tree.
+
+
+
+
+

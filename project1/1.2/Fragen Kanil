@@ -1,0 +1,33 @@
+Fragen Kanil
+
+line 7 onwards:
+Do these "trans_rot270" etc. just describe the positions of the individual cells if the board is rotated/flipped etc.?
+
+class Node():
+- a node consists of the current game state (board)
+- the score for this game state (what's this??)
+- it's depth (= position in tree?)
+- terminal_depth (what's this?)
+- why is best_move = -1 ? What's meant by best_move?
+- its children (contains list of all the children id's)
+- a key that uniquely identifies the node/game state
+
+get_hash_key():
+If I understand it correctly this functions creates a key that uniquely identifies every game state. The key is just the game state interpreted as a long string. Correct?
+
+get_score():
+- we first reshape the board
+- then we sum along all the vertical, horizontal and diagonal axes and see whether one of the players won or if the game ended in a draw
+
+learn_tree():
+- Go through this function together
+
+make_best_move():
+- Shouldn't the print "problem!..." part be in an if statement or something?
+- what is exit(0) doing?
+
+How does the program work in general? Is x learning the tree before the game starts? So do we first run clever_ai.py and then the tic_tac_toe game?
+
+- For presentation: after presenting the idea (i.e. adapt minmax)state what you do exactly, i.e. basically explain/say what the function description of build_tree_and_learn says
+
+- How does the dictionary look like?

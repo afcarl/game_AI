@@ -1,0 +1,33 @@
+SIMPLE BALL FOLLOWER
+- determines x position of paddle and ball
+- determines the way the paddle has to move to be under the ball
+- it makes sure that the paddle doesn't move faster than it is allowed to
+- makes sure the paddle doesn't go off the screen
+- set the new x position 
+=> basically just follows the x position of the ball 
+
+
+REINFORCEMENT LEARNING
+- We learn the Q-table
+- It tells us for every state what the action with the highest Q-value is 
+- This is the action we have to choose
+
+- So our goal is to learn the Q-table (Quality table)
+- We exploit and explore (both 50% in the beginning)
+- epsilon defines how much we explore
+- 1-epslison exploit
+- we decrement epsilon over time until a minimum of 0.1
+=> when we are confident with out table to exploit more in order to make our good moves even better
+
+- alpha is the learning rate
+- for every state and action there is a reward
+- our reward function is -10.000 if the game is lost/ends and -dist + score o/w
+=> best possible reward is 0+score (if you are at the ball already)
+
+- we use temporal difference learning
+- TD(lambda) tells us how far we look ahead
+- we only look one step ahead
+
+- lambda is our discount parameter
+- it tells us 
+- incremental average (we substract the current state in the update rule at the end)
