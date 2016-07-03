@@ -48,6 +48,7 @@ def SOM():
     c2 = mid[1] + r1 * np.sin(deg)
     c3 = mid[2] + np.zeros(len(deg))
    
+    # Initial weigths (circular graph)
     circ = np.vstack([c1,c2,c3]).T
  
     # Initialize weight matrix for plotting
@@ -57,7 +58,7 @@ def SOM():
     a,b = np.ogrid[0:num_vertices, 0:num_vertices]
     distances = np.sqrt(np.sum((circ[a]- circ[b])**2,2))
 
-    
+    # SOM main loop    
     for t in range(0, t_max):
 
         # Randomly sample a point
