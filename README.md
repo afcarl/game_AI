@@ -10,17 +10,17 @@ Intro
 -----
 This repository includes project solutions for the course Game AI by Prof. Bauchkhage (Summer 2016)
 
-Project 1
+Project1
 -----
 Simple probabilistic strategy for playing the game tic tac toe
 
 
-Project 2
+Project2
 -----
 Building the whole tic tac toe game tree
 Minmax algorithm
 
 
-Project 3
+Project3
 -----
 SOM for player trajectory data
