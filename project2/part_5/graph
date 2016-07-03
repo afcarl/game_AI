@@ -1,8 +1,0 @@
-How we construct the graph:
-- for each row we go through every element
-- If it's a 1 we just put the node in the graph
-- If it's a 0 we add the node but then add edges
-- for this we look at all neighbors (go one up, left, right, down)
-- we only add edges if the neighbor is a zero
-
-dijkstra = a star with heuristic 0
