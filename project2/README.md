@@ -7,7 +7,7 @@ Compute the complete tic tac toe game tree (starting with an empty board and pla
 **Task 2.2:**
 Implement the minmax algorithm and use your implementation to compute mmv(n0) for the following tree
 
-**Solution: **
+**Solution:**
 The files can be run from the terminal with the commands
 
     python tic_tac_toe_tree.py
