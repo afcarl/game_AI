@@ -13,3 +13,7 @@ The following two videos provide an idea as to how a visualization may look like
   http://www.youtube.com/watch?v=k7DK5fnJH94
   
 **Solution:**
+
+The code can be run from the terminal with the command
+
+  python SOM_3.3.py
