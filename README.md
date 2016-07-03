@@ -2,9 +2,9 @@ Projects for Game AI lecture at B-IT Bonn, Summer 2016
 ===============================================
 
 - [Intro](#intro)
-- [Project 1](#project1)
-- [Project 2](#project2)
-- [Project 3](#project3)
+- [Project1](#project1)
+- [Project2](#project2)
+- [Project3](#project3)
 
 Intro
 -----
