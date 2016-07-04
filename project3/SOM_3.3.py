@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 # Determine the maximal number of learning steps
 #t_max = int(raw_input('Insert maximal time: '))
 
-num_vertices = 20
+num_vertices = 15
 t_max = 1000
 
 # Load data
@@ -51,7 +51,8 @@ def SOM():
     # Initial weigths (circular graph)
     circ = np.vstack([c1,c2,c3]).T
  
-    # Initialize weight matrix for plotting
+    # Initialize weight matrix. In the end it will consist of all weights from 
+    # t = 0 up to t = t_max. The weights are needed for the animated plot
     weight_matrix = [circ.copy()]
    
     # Compute the initial distance matrix
@@ -119,9 +120,10 @@ def plot_SOM1(circle, weight_matrix):
      
     def updatePlot(weights):
         vecs.set_data(weights[:,1], weights[:,0])
+        # NOTE: there is no .set_data() for 3 dim data
         vecs.set_3d_properties(weights[:,2])
        
-    anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=5)
+    anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1)
      
      
     plt.show()
@@ -140,6 +142,8 @@ def plot_SOM2(circ, weight_matrix):
     z1 = data2[:,2]
     
     ax.scatter(y1, x1, z1, c='b', marker='o', depthshade=True)
+    # Plot the initial points. In the animation these points are moved
+    # to different positions, resulting in an animation.
     vecs = ax.plot(y2, x2, z2,c='r', marker = 'o')[0]
      
     ax.set_ylim([1200,0])
@@ -152,9 +156,12 @@ def plot_SOM2(circ, weight_matrix):
      
     def updatePlot(weights):
         vecs.set_data(weights[:,1], weights[:,0])
+        # NOTE: there is no .set_data() for 3 dim data
         vecs.set_3d_properties(weights[:,2])
        
-    anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=20)
+    # Make an animation by repeatedly calling the function updatePlot that
+    # 'fills' the variable 'vecs' with data from the weight matrix
+    anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1)
      
     plt.show()
     
