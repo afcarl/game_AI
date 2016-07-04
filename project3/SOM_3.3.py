@@ -19,18 +19,19 @@ import matplotlib.pyplot as plt
 # Determine the maximal number of learning steps
 #t_max = int(raw_input('Insert maximal time: '))
 
-num_vertices = 15
-t_max = 1000
+num_vertices = 23
+t_max = 2000
 
 # Load data
 data1 = genfromtxt('q3dm1-path1.csv', delimiter=',')
 data2 = genfromtxt('q3dm1-path2.csv', delimiter=',')
 
-data = data2
+data = data1
 
 def SOM():
-    # Create random starting weights that already have a ring structure.
-    # The number of neurons is specified by num_vertices
+    # Create random starting weights that already have a circular structure
+    # using the properties of sin, cos and pi. The number of neurons/vertices
+    # is specified by num_vertices.
 
     maxy = np.max(data[:, 1])
     miny = np.min(data[:, 1])
@@ -48,11 +49,11 @@ def SOM():
     c2 = mid[1] + r1 * np.sin(deg)
     c3 = mid[2] + np.zeros(len(deg))
    
-    # Initial weigths (circular graph)
+    # Initial weigths/coordinates of the vertices (circular graph)
     circ = np.vstack([c1,c2,c3]).T
  
     # Initialize weight matrix. In the end it will consist of all weights from 
-    # t = 0 up to t = t_max. The weights are needed for the animated plot
+    # t = 0 up to t = t_max. The weights are needed for the animated plot.
     weight_matrix = [circ.copy()]
    
     # Compute the initial distance matrix
@@ -84,6 +85,7 @@ def SOM():
             increase = eta * np.exp(-np.true_divide(distances[index][p], 2*sigma))*(point - circ[p])
             circ[p] = circ[p] + increase
           
+        # Save the new weights
         weight_matrix.append(circ.copy())
         
     return circ, weight_matrix
@@ -96,6 +98,9 @@ circ, weight_matrix = SOM()
 # The animation is achieved using matplotlib.animate FuncAnimation
 
 def plot_SOM1(circle, weight_matrix):
+    '''
+    This functions plots the data from dataset1 and the SOM animation in 3D
+    '''
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     
@@ -123,13 +128,16 @@ def plot_SOM1(circle, weight_matrix):
         # NOTE: there is no .set_data() for 3 dim data
         vecs.set_3d_properties(weights[:,2])
        
-    anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1)
-     
-     
+    plt.savefig('Initialization_data1.png')
+    #anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1) 
+    
     plt.show()
+    
         
 def plot_SOM2(circ, weight_matrix):
-    
+    '''
+    This functions plots the data from dataset2 and the SOM animation in 3D
+    '''
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     
@@ -160,7 +168,8 @@ def plot_SOM2(circ, weight_matrix):
         vecs.set_3d_properties(weights[:,2])
        
     # Make an animation by repeatedly calling the function updatePlot that
-    # 'fills' the variable 'vecs' with data from the weight matrix
+    # fills the variable 'vecs' with data from weight_matrix. weight_matrix
+    # is a list of all weights that were produced during the t_max iterations
     anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1)
      
     plt.show()
@@ -170,5 +179,5 @@ def plot_SOM2(circ, weight_matrix):
 if __name__=="__main__":
     
     circ, weight_matrix = SOM()
-    #plot_SOM1(circ, weight_matrix)
-    plot_SOM2(circ, weight_matrix)
+    plot_SOM1(circ, weight_matrix)
+    #plot_SOM2(circ, weight_matrix)
