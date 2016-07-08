@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 27 16:26:04 2016
+'''
+Group: Eva Gerlitz, Anna-Lena Popkes, Pascal Wenker, Kanil Patel, Nico Lutz
 
-@author: anna-lenapopkes
-"""
+Exercise 3.3: self organizing maps to represent player movements
+'''
 
 import numpy as np 
 from numpy import genfromtxt
@@ -26,7 +25,7 @@ t_max = 2000
 data1 = genfromtxt('q3dm1-path1.csv', delimiter=',')
 data2 = genfromtxt('q3dm1-path2.csv', delimiter=',')
 
-data = data1
+data = data2
 
 def SOM():
     # Create random starting weights that already have a circular structure
@@ -42,7 +41,7 @@ def SOM():
     mid = data.mean(axis=0)
    
     deg = np.linspace(0, 2*np.pi, num_vertices)
-     
+  
     r0 = (maxx-minx)/2.0
     r1 = (maxy-miny)/2.0
     c1 = mid[0] + r0 * np.cos(deg)
@@ -56,9 +55,21 @@ def SOM():
     # t = 0 up to t = t_max. The weights are needed for the animated plot.
     weight_matrix = [circ.copy()]
    
-    # Compute the initial distance matrix
+    # Compute the initial distance matrix (topological distances)
     a,b = np.ogrid[0:num_vertices, 0:num_vertices]
-    distances = np.sqrt(np.sum((circ[a]- circ[b])**2,2))
+    
+    div,mod = divmod(num_vertices,2)
+    first = np.arange(0,div+1)
+    second = first[::-1]
+    final = np.concatenate((first, second[1-mod:div]))   
+     
+    distances = np.empty((num_vertices, num_vertices))
+    distances[0] = final
+    
+    for i in range(1,num_vertices):
+        distances[i] = np.roll(final, i)
+        
+    #distances = np.sqrt(np.sum((circ[a]- circ[b])**2,2))
 
     # SOM main loop    
     for t in range(0, t_max):
@@ -67,7 +78,7 @@ def SOM():
         rand = np.random.randint(0, len(data), 1)
         point = data[rand][0]
         
-        # Determine the winner neuron
+        # Determine the winner neuron and save its position 
         min_dist = np.inf
         index = 0
         for p in range(0,num_vertices):
@@ -90,8 +101,6 @@ def SOM():
         
     return circ, weight_matrix
         
-circ, weight_matrix = SOM()
-
 #np.savetxt("data1_8_vertices_2", circ)
 
 # PLOTTING THE DATA
@@ -129,7 +138,7 @@ def plot_SOM1(circle, weight_matrix):
         vecs.set_3d_properties(weights[:,2])
        
     plt.savefig('Initialization_data1.png')
-    #anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1) 
+    anim = FuncAnimation(fig, updatePlot, frames=weight_matrix, interval=1) 
     
     plt.show()
     
@@ -179,5 +188,5 @@ def plot_SOM2(circ, weight_matrix):
 if __name__=="__main__":
     
     circ, weight_matrix = SOM()
-    plot_SOM1(circ, weight_matrix)
-    #plot_SOM2(circ, weight_matrix)
+    #plot_SOM1(circ, weight_matrix)
+    plot_SOM2(circ, weight_matrix)
