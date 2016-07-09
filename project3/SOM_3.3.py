@@ -12,22 +12,12 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
 
 
-# Determine the number of vertices
-#num_vertices = int(raw_input('Insert number of vertices: '))
-
-# Determine the maximal number of learning steps
-#t_max = int(raw_input('Insert maximal time: '))
-
-num_vertices = 23
-t_max = 2000
-
 # Load data
 data1 = genfromtxt('q3dm1-path1.csv', delimiter=',')
 data2 = genfromtxt('q3dm1-path2.csv', delimiter=',')
 
-data = data2
 
-def SOM():
+def SOM(data, num_vertices, t_max):
     # Create random starting weights that already have a circular structure
     # using the properties of sin, cos and pi. The number of neurons/vertices
     # is specified by num_vertices.
@@ -40,7 +30,7 @@ def SOM():
    
     mid = data.mean(axis=0)
    
-    deg = np.linspace(0, 2*np.pi, num_vertices)
+    deg = np.linspace(0, 2*np.pi, num_vertices, endpoint = False)
   
     r0 = (maxx-minx)/2.0
     r1 = (maxy-miny)/2.0
@@ -50,7 +40,7 @@ def SOM():
    
     # Initial weigths/coordinates of the vertices (circular graph)
     circ = np.vstack([c1,c2,c3]).T
- 
+     
     # Initialize weight matrix. In the end it will consist of all weights from 
     # t = 0 up to t = t_max. The weights are needed for the animated plot.
     weight_matrix = [circ.copy()]
@@ -90,6 +80,7 @@ def SOM():
         # Compute learning rate and topological adaptation rate
         eta = (1 - np.true_divide(t,t_max))
         sigma = np.exp(-np.true_divide(t,t_max))
+        sigma = sigma/3
 
         # Update the weight vectors of ALL neurons
         for p in range(0,num_vertices):
@@ -121,6 +112,7 @@ def plot_SOM1(circle, weight_matrix):
     y1 = data1[:,1]
     z1 = data1[:,2]
     
+   
     ax.scatter(y1, x1, z1, c='b', marker='o', depthshade=True)
     vecs = ax.plot(y2, x2, z2,c='r', marker = 'o')[0]
      
@@ -133,6 +125,7 @@ def plot_SOM1(circle, weight_matrix):
     ax.set_zlabel('Z Label')
      
     def updatePlot(weights):
+        weights = np.vstack([weights, weights[0]])
         vecs.set_data(weights[:,1], weights[:,0])
         # NOTE: there is no .set_data() for 3 dim data
         vecs.set_3d_properties(weights[:,2])
@@ -172,6 +165,7 @@ def plot_SOM2(circ, weight_matrix):
     ax.set_zlabel('Z Label')
      
     def updatePlot(weights):
+        weights = np.vstack([weights, weights[0]])
         vecs.set_data(weights[:,1], weights[:,0])
         # NOTE: there is no .set_data() for 3 dim data
         vecs.set_3d_properties(weights[:,2])
@@ -186,7 +180,11 @@ def plot_SOM2(circ, weight_matrix):
     
     
 if __name__=="__main__":
-    
-    circ, weight_matrix = SOM()
-    #plot_SOM1(circ, weight_matrix)
-    plot_SOM2(circ, weight_matrix)
+    num_vertices = 10
+    t_max = 1000
+    data = data2
+    circ, weight_matrix = SOM(data, num_vertices, t_max)
+    if np.array_equal(data,data1):
+       plot_SOM1(circ, weight_matrix)
+    else:
+        plot_SOM2(circ, weight_matrix)
