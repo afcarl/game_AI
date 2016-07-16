@@ -82,8 +82,6 @@ def SOM(data, num_vertices, t_max):
     for i in range(1,num_vertices):
         distances[i] = np.roll(final, i)
 
-    #distances = np.sqrt(np.sum((circ[a]- circ[b])**2,2))
-
     # SOM main loop
     for t in range(0, t_max):
 
