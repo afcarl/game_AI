@@ -14,6 +14,10 @@ The following two videos provide an idea as to how a visualization may look like
   
 **Solution:**
 
-The code can be run from the terminal with the command
+The file can be run from the terminal with the command
 
-    python SOM_3.3.py
+    python SOM_3.3_Final.py data num_vertices
+
+Examples:
+    python SOM_3.3_Final.py data1 13
+    python SOM_3.3_Final.py data2 8
