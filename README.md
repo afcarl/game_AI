@@ -8,7 +8,7 @@ Projects for Game AI lecture at B-IT Bonn, Summer 2016
 
 Intro
 -----
-This repository includes project solutions for the course Game AI by Prof. Bauchkhage (Summer 2016). Also the final report is included which contains explanations and descriptions of all projects.
+This repository includes project solutions for the course Game AI by (Prof. Bauckhage)[https://multimedia-pattern-recognition.info/team/prof-dr-christian-bauckhage/] (Summer 2016). Also the final report is included which contains explanations and descriptions of all projects.
 
 Project1
 -----
