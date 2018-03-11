@@ -1,6 +1,4 @@
 '''
-Group: Eva Gerlitz, Anna-Lena Popkes, Pascal Wenker, Kanil Patel, Nico Lutz
-
 Exercise 3.3: self organizing maps to represent player movements
 '''
 
