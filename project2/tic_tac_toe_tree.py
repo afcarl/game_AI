@@ -1,6 +1,4 @@
 '''
-Group: Eva Gerlitz, Anna-Lena Popkes, Pascal Wenker, Kanil Patel, Nico Lutz
-
 Exercise 2.1: The tic tac toe game tree
 '''
 
