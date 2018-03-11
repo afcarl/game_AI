@@ -1,6 +1,4 @@
 '''
-Group: Eva Gerlitz, Anna-Lena Popkes, Pascal Wenker, Kanil Patel, Nico Lutz
-
 Exercise 1.2.1: Implement a probabilistic strategy, Part 1
 '''
 
